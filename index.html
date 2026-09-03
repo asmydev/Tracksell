@@ -101,9 +101,9 @@ body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ar
 .empty p{font-size:14px;line-height:1.6}
 
 /* ---- OVERLAY + MODAL ---- */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:300;display:none;backdrop-filter:blur(2px)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:700;display:none;backdrop-filter:blur(2px)}
 .overlay.on{display:block}
-.modal{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--card);border-radius:22px 22px 0 0;z-index:400;max-height:92vh;overflow-y:auto;display:none}
+.modal{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--card);border-radius:22px 22px 0 0;z-index:800;max-height:92vh;overflow-y:auto;display:none}
 .modal.on{display:block}
 .m-handle{width:40px;height:4px;background:var(--border);border-radius:4px;margin:10px auto 0}
 .m-hdr{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card);z-index:5}
@@ -214,7 +214,7 @@ select.finput{appearance:none;-webkit-appearance:none;background-image:linear-gr
 .d-sub-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:6px}
 
 /* ---- CONFIRM DIALOG ---- */
-.confirm-box{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:18px;padding:24px 22px;z-index:600;width:88%;max-width:340px;box-shadow:0 8px 40px rgba(0,0,0,.2);display:none}
+.confirm-box{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:18px;padding:24px 22px;z-index:900;width:88%;max-width:340px;box-shadow:0 8px 40px rgba(0,0,0,.2);display:none}
 .confirm-box.on{display:block}
 .confirm-title{font-size:17px;font-weight:700;margin-bottom:8px}
 .confirm-msg{font-size:14px;color:var(--muted);line-height:1.5;margin-bottom:20px}
@@ -223,7 +223,7 @@ select.finput{appearance:none;-webkit-appearance:none;background-image:linear-gr
 .btn-confirm-ok{flex:1;padding:12px;border-radius:10px;border:none;background:var(--danger);color:#fff;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer}
 
 /* ---- TOAST ---- */
-.toast{position:fixed;top:72px;left:50%;transform:translateX(-50%) translateY(-14px);background:var(--g-dark);color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;z-index:700;opacity:0;transition:all .3s;max-width:92%;text-align:center;pointer-events:none}
+.toast{position:fixed;top:72px;left:50%;transform:translateX(-50%) translateY(-14px);background:var(--g-dark);color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;z-index:1000;opacity:0;transition:all .3s;max-width:92%;text-align:center;pointer-events:none}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
 
@@ -452,7 +452,7 @@ select.finput{appearance:none;-webkit-appearance:none;background-image:linear-gr
 </div>
 
 <!-- ========== CONFIRM DIALOG ========== -->
-<div class="overlay" id="overlayConfirm" onclick="" style="z-index:550"></div>
+<div class="overlay" id="overlayConfirm" onclick="" style="z-index:850"></div>
 <div class="confirm-box" id="confirmBox">
   <div class="confirm-title" id="confirmTitle">Confirmation</div>
   <div class="confirm-msg" id="confirmMsg"></div>
