@@ -1179,8 +1179,36 @@ let deferredInstallPrompt = null;
 const installBtn = document.getElementById('installBtn');
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:' && location.protocol !== 'content:') {
+  var reloadingForUpdate = false;
+
+  // Quand un nouveau service worker prend la main, on recharge une seule fois
+  // pour que la page affiche immédiatement la version fraîchement déployée.
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (reloadingForUpdate) return;
+    reloadingForUpdate = true;
+    window.location.reload();
+  });
+
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('./sw.js').catch(function(){ });
+    navigator.serviceWorker.register('./sw.js').then(function(reg){
+      // Un worker déjà en attente : on lui demande de s'activer tout de suite.
+      if (reg.waiting) reg.waiting.postMessage('SKIP_WAITING');
+
+      reg.addEventListener('updatefound', function(){
+        var sw = reg.installing;
+        if (!sw) return;
+        sw.addEventListener('statechange', function(){
+          if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+            sw.postMessage('SKIP_WAITING');
+          }
+        });
+      });
+
+      // Vérifie l'existence d'une nouvelle version à chaque retour sur l'app.
+      document.addEventListener('visibilitychange', function(){
+        if (!document.hidden) reg.update().catch(function(){ });
+      });
+    }).catch(function(){ });
   });
 }
 
